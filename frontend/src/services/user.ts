@@ -5,6 +5,13 @@ interface LoginBody {
   password: string;
 }
 
+interface GetUserData {
+  user: {
+    id: BigInteger;
+    username: string;
+  }
+}
+
 export const userApi = createApi({
   tagTypes: ["user"],
   reducerPath: "userApi",
@@ -19,9 +26,17 @@ export const userApi = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: ['user'],
+      invalidatesTags: ["user"],
     }),
-    getUser: builder.query({
+    signIn: builder.mutation({
+      query: (body: LoginBody) => ({
+        url: `/signin`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    getUser: builder.query<GetUserData, any>({
       query: () => "",
       providesTags: ["user"],
     }),
@@ -30,4 +45,4 @@ export const userApi = createApi({
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useLoginMutation, useGetUserQuery } = userApi;
+export const { useLoginMutation, useGetUserQuery, useSignInMutation } = userApi;

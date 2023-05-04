@@ -4,6 +4,8 @@ import { sign } from "jsonwebtoken";
 import { hash } from "bcrypt";
 import { User } from "../entity/User";
 import { validationResult } from "express-validator";
+import { UserBulding } from "../entity/UserBuilding";
+import { carriereType, mineType, productions, scierieType } from "../utils";
 
 class SignInController {
   async post(req: Request, res: Response) {
@@ -19,11 +21,33 @@ class SignInController {
         return res.status(403).json("choose_another_username");
       }
       const passwordHashed = await hash(password, 10);
+
       user = await User.create({
         username: username,
         password: passwordHashed,
+        buildings: [
+          UserBulding.create({
+            level: 0,
+            building: scierieType.identifiers[0].id,
+            count: 300,
+            generation: productions[scierieType.identifiers[0].id - 1][0]
+          }),
+          UserBulding.create({
+            level: 0,
+            building: carriereType.identifiers[0].id,
+            count: 200,
+            generation: productions[carriereType.identifiers[0].id - 1][0]
+          }),
+          UserBulding.create({
+            level: 0,
+            building: mineType.identifiers[0].id,
+            count: 100,
+            generation: productions[mineType.identifiers[0].id - 1][0]
+          }),
+        ],
       });
-      await User.insert(user);
+
+      await User.save(user);
 
       const expireIn = 24 * 60 * 60;
       const token = sign(

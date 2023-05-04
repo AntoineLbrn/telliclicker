@@ -1,6 +1,9 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
+import { Building } from "./entity/Building"
+import { ResourceType } from "./entity/ResourceType"
 import { User } from "./entity/User"
+import { UserBulding } from "./entity/UserBuilding"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: "telliclicker",
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [User, Building, ResourceType, UserBulding],
     migrations: [],
     subscribers: [],
 })

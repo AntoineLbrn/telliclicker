@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm"
+import { UserBulding } from "./UserBuilding"
 
 @Entity()
 export class User extends BaseEntity{
@@ -12,4 +13,6 @@ export class User extends BaseEntity{
     @Column()
     password: string
 
+    @OneToMany(() => UserBulding, (UserBulding => UserBulding.user), {cascade: true})
+    buildings: UserBulding[]     
 }

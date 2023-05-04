@@ -1,24 +1,19 @@
 import React from 'react';
 import './App.css';
-import { SignInComponent } from './Login';
+import { Game } from './features/game/Game';
+import { SignInComponent } from './features/login/Login';
 import { useGetUserQuery } from './services/user'
 
 function App() {
-
-  const { data, error, isLoading } = useGetUserQuery("currentUser")
+  const { data, isLoading } = useGetUserQuery("currentUser")
 
   if (isLoading) return <>"..."</>;
 
   return (
     <div className="App">
-      {error ? <SignInComponent /> :
-
-        <>Cookie clicker {data.user.username}</>
-
-      }
-
-      Telliclicker
+      {data?.user ? <Game username={data.user.username} /> : <SignInComponent />}
     </div>
+
   );
 }
 
