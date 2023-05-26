@@ -15,6 +15,15 @@ export class Building extends BaseEntity{
     @Column("int", { array: true })
     productionByLevel: number[]
 
+    @Column("int", { array: true })
+    productionLevelUpCostByLevel: number[][]
+
+    @Column("int", { array: true })
+    max: number[]
+
+    @Column("int", { array: true })
+    maxLevelUpCostByLevel: number[][]
+
     @OneToMany(() => UserBulding, (userBuilding) => userBuilding.building)
     userBuildings: UserBulding[] 
 

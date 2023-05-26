@@ -5,7 +5,7 @@ export const generateResources = () => {
     try {
         UserBulding.createQueryBuilder()
         .update(UserBulding)
-        .set({ count: () => "count + generation" })
+        .set({ count: () => "LEAST(count + generation, capacity)" })
         .execute()
     } catch (error) {
         console.log(error)

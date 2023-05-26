@@ -9,6 +9,10 @@ export class User extends BaseEntity{
 
     @Column()
     username: string
+    
+    // Level = Mairie
+    @Column({default: 0})
+    level: number
 
     @Column()
     password: string

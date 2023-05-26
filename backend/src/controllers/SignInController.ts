@@ -30,18 +30,21 @@ class SignInController {
             level: 0,
             building: scierieType.identifiers[0].id,
             count: 300,
+            maxResourceLevel: 0,
             generation: productions[scierieType.identifiers[0].id - 1][0]
           }),
           UserBulding.create({
             level: 0,
             building: carriereType.identifiers[0].id,
             count: 200,
+            maxResourceLevel: 0,
             generation: productions[carriereType.identifiers[0].id - 1][0]
           }),
           UserBulding.create({
             level: 0,
             building: mineType.identifiers[0].id,
             count: 100,
+            maxResourceLevel: 0,
             generation: productions[mineType.identifiers[0].id - 1][0]
           }),
         ],
