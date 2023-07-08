@@ -45,7 +45,7 @@ export const Game: React.FC<{ username: string }> = ({ username }) => {
         </Box>
         <Box sx={{ height: "90%", display: "flex" }}>
             <Box flex="1" flexShrink="3" >
-                <LeftDrawer />
+                <LeftDrawer width={height*ratio} />
                 <Box sx={{ width: "3px", margin: "auto", height: "80%", marginTop: "25%", backgroundColor: "#E7B468" }}></Box>
             </Box>
             <Box flex="1" ref={gameImageRef} maxHeight="100%" maxWidth="75%">

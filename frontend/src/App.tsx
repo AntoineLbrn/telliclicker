@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Game } from './features/game/Game';
 import { SignInComponent } from './features/login/Login';
-import { useGetUserQuery } from './services/user'
+import { useGetUserQuery } from './services/resources'
 
 function App() {
   const { data, isLoading } = useGetUserQuery("currentUser")
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      {data?.user ? <Game username={data.user.username} /> : <SignInComponent />}
+      {data ? <Game username={data.username} /> : <SignInComponent />}
     </div>
 
   );

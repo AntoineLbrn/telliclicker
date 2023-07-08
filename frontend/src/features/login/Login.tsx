@@ -1,7 +1,7 @@
 import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import React from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
-import { useLoginMutation, useSignInMutation } from "../../services/user"
+import { useLoginMutation, useSignInMutation } from "../../services/resources"
 import { switchAuth } from "./LoginSlice"
 import './style.css';
 import { TextFieldStyled } from "./TextFieldStyled";
