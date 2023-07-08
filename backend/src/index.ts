@@ -3,12 +3,13 @@ import { routes } from "./routes";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
 import * as cors from "cors";
-import { createBaseBuildings } from "./utils";
+import { createBaseBuildings, createBaseUnits} from "./utils";
 import { generateResources } from "./cron";
 
 AppDataSource.initialize()
   .then(async () => {
     await createBaseBuildings();
+    await createBaseUnits();
     generateResources();
     const app = express();
     const port = process.env.PORT ? process.env.PORT : 3332;

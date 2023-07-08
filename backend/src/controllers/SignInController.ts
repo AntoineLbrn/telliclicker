@@ -5,7 +5,8 @@ import { hash } from "bcrypt";
 import { User } from "../entity/User";
 import { validationResult } from "express-validator";
 import { UserBulding } from "../entity/UserBuilding";
-import { carriereType, mineType, productions, scierieType } from "../utils";
+import { archerType, carriereType, cavalierType, fantassinType, guerrierType, mageType, maxCount, mineType, productions, scierieType } from "../utils";
+import { UnitStock } from "../entity/UnitStock";
 
 class SignInController {
   async post(req: Request, res: Response) {
@@ -31,23 +32,43 @@ class SignInController {
             building: scierieType.identifiers[0].id,
             count: 300,
             maxResourceLevel: 0,
-            generation: productions[scierieType.identifiers[0].id - 1][0]
+            generation: productions[scierieType.identifiers[0].id - 1][0],
+            capacity: maxCount[scierieType.identifiers[0].id -1][0]
           }),
           UserBulding.create({
             level: 0,
             building: carriereType.identifiers[0].id,
             count: 200,
             maxResourceLevel: 0,
-            generation: productions[carriereType.identifiers[0].id - 1][0]
+            generation: productions[carriereType.identifiers[0].id - 1][0],
+            capacity: maxCount[carriereType.identifiers[0].id -1][0]
           }),
           UserBulding.create({
             level: 0,
             building: mineType.identifiers[0].id,
             count: 100,
             maxResourceLevel: 0,
-            generation: productions[mineType.identifiers[0].id - 1][0]
+            generation: productions[mineType.identifiers[0].id - 1][0],
+            capacity: maxCount[mineType.identifiers[0].id -1][0]
           }),
         ],
+        unitStocks: [
+          UnitStock.create({
+            type: fantassinType.identifiers[0].id
+          }),
+          UnitStock.create({
+            type: archerType.identifiers[0].id
+          }),
+          UnitStock.create({
+            type: guerrierType.identifiers[0].id
+          }),
+          UnitStock.create({
+            type: cavalierType.identifiers[0].id
+          }),
+          UnitStock.create({
+            type: mageType.identifiers[0].id
+          }),
+        ]
       });
 
       await User.save(user);

@@ -5,6 +5,7 @@ import {
   BaseEntity,
   ManyToOne,
   AfterUpdate,
+  BeforeUpdate,
 } from "typeorm";
 import { maxCount, productions } from "../utils";
 import { Building } from "./Building";
@@ -38,9 +39,9 @@ export class UserBulding extends BaseEntity {
   @ManyToOne(() => User, (user) => user.buildings)
   user: User;
 
-  @AfterUpdate()
+  @BeforeUpdate()
   updateCounters() {
-    this.generation = productions[this.building.id][this.level];
-    this.capacity = maxCount[this.building.id][this.maxResourceLevel];
+    this.generation = productions[this.building.id-1][this.level];
+    this.capacity = maxCount[this.building.id-1][this.maxResourceLevel];
   }
 }

@@ -14,7 +14,7 @@ class LoginController {
 
     const { username, password } = req.body;
     try {
-      let user = await User.findOne({ where: { username } });
+      let user = await User.findOne({ where: { username }, select: {id: true, username: true, password: true} });
 
       if (user) {
         compare(password, user.password, function (err, response) {

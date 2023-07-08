@@ -2,6 +2,8 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { Building } from "./entity/Building"
 import { ResourceType } from "./entity/ResourceType"
+import { UnitStock } from "./entity/UnitStock"
+import { UnitType } from "./entity/UnitType"
 import { User } from "./entity/User"
 import { UserBulding } from "./entity/UserBuilding"
 
@@ -14,7 +16,7 @@ export const AppDataSource = new DataSource({
     database: "telliclicker",
     synchronize: true,
     logging: false,
-    entities: [User, Building, ResourceType, UserBulding],
+    entities: [User, Building, ResourceType, UserBulding, UnitStock, UnitType],
     migrations: [],
     subscribers: [],
 })
